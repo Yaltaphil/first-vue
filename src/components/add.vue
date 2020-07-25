@@ -5,9 +5,10 @@
         v-model="title"
         placeholder="type here"
         aria-controls="field for task input"
+        ref="todoInput"
       ></b-form-input>
       <b-button type="submit" variant="success">
-        <b-icon icon="box-arrow-in-down"></b-icon>Add
+        <b-icon icon="box-arrow-in-down"></b-icon> Add
       </b-button>
     </b-input-group>
   </form>
@@ -28,7 +29,7 @@ export default {
         };
         this.$emit("new-Item", newTodo);
         this.title = "";
-        this.focus();
+        this.$refs.todoInput.focus();
       }
     }
   }

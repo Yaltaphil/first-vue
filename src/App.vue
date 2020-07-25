@@ -1,19 +1,11 @@
 <template>
-  <b-container fluid="sm" class="winter-neva-gradient color-block z-depth-1">
+  <b-container fluid="sm">
     <h2 class="text-center my-3">Your TODO list</h2>
     <add @new-Item="addItem" />
-    <!-- <b-row class="mt-3">
-      <b-col sm="6">
-        <b-form-select v-model="filter" class="mb-3 text-info">
-          <b-form-select-option value="All">Show all tasks</b-form-select-option>
-          <b-form-select-option value="Completed">Show completed tasks</b-form-select-option>
-          <b-form-select-option value="Not completed">Show not completed tasks</b-form-select-option>
-        </b-form-select>
-      </b-col>
-    </b-row>-->
     <b-row class="p-3">
       <b-form-group>
         <b-form-radio-group
+          class="text-info"
           v-model="filter"
           :options="options"
         ></b-form-radio-group>

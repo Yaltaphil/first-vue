@@ -7,9 +7,13 @@
           v-on:click="todo.completed = !todo.completed"
         ></b-form-checkbox>
       </b-col>
-      <b-col cols="8 pl-3" v-bind:class="{ done: todo.completed }">{{
-        todo.title
-      }}</b-col>
+      <b-col
+        cols="8 pl-3"
+        v-bind:class="{ done: todo.completed }"
+        v-on:click="todo.completed = !todo.completed"
+      >
+        {{ todo.title }}
+      </b-col>
       <b-col col="1" class="text-center">
         <b-button
           variant="outline-danger"
