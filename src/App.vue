@@ -31,7 +31,6 @@ export default {
     todolist,
     add
   },
-<<<<<<< HEAD
   mounted() {
     if (localStorage.getItem("toDoList")) {
       this.todos = JSON.parse(localStorage.getItem("toDoList"));
@@ -70,21 +69,6 @@ export default {
       this.todos = this.todos.filter(t => t.id !== id);
       localStorage.setItem("toDoList", JSON.stringify(this.todos));
     }
-=======
-  data() {
-    return {
-      todos: [{id:1, title: "Read books every day", checked: false }, 
-      {id:2, title: "Sleep enough", checked: false },
-      {id:3, title: "Be calm and make sport sessions", checked: false }],
-        };
-    
-  },
-  methods: {
-    addItem(Item) {
-      console.log(Item)
-      return this.todos.push(Item);
-    }    
->>>>>>> 1326707ac29e4a61e7135a06b068a33822bb86df
   }
 };
 </script>

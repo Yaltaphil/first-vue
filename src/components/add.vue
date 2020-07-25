@@ -24,25 +24,14 @@ export default {
       if (this.title.trim()) {
         const newTodo = {
           id: Date.now(),
-<<<<<<< HEAD
           title: this.title,
           completed: false
         };
         this.$emit("new-Item", newTodo);
         this.title = "";
         this.$refs.todoInput.focus();
-=======
-          title: this.title
-        };
-        this.$emit("new-Item", newTodo);
-        this.title ='';    
->>>>>>> 1326707ac29e4a61e7135a06b068a33822bb86df
       }
     }
   }
 };
-<<<<<<< HEAD
 </script>
-=======
-</script>
->>>>>>> 1326707ac29e4a61e7135a06b068a33822bb86df
