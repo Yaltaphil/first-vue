@@ -40,6 +40,7 @@ export default {
 </script>
 
 <style scoped>
+<<<<<<< HEAD
 .done {
   text-decoration: line-through;
 }
@@ -51,3 +52,9 @@ export default {
   opacity: 0;
 }
 </style>
+=======
+button {
+  background-color: rgb(219, 84, 84);
+}
+</style>
+>>>>>>> 1326707ac29e4a61e7135a06b068a33822bb86df
