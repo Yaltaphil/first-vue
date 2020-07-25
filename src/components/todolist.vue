@@ -4,7 +4,7 @@
       v-for="todo in todos"
       v-bind:todo="todo"
       :key="todo.id"
-      v-on:rmTodo="rmTodo"
+      v-on:removeTodoItem="removeTodoItem"
     />
   </b-container>
 </template>
@@ -17,8 +17,8 @@ export default {
     elem
   },
   methods: {
-    rmTodo(id) {
-      this.$emit("rmTodo", id);
+    removeTodoItem(id) {
+      this.$emit("removeTodoItem", id);
     }
   }
 };
