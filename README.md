@@ -1,4 +1,8 @@
 # todo
+Simple TODO app. 
+Vue.js and Bootstrap-Vue used.
+
+
 
 ## Project setup
 ```
