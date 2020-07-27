@@ -23,6 +23,7 @@
       <b-button
         href="https://money.yandex.ru/to/410013014746086"
         variant="outline-info"
+        target="_blank"
       >
         <b-icon icon="hand-thumbs-up"></b-icon>Donate
       </b-button>
@@ -36,8 +37,10 @@
 <script>
 import todolist from "@/components/todolist.vue";
 import add from "@/components/add.vue";
-var addSound = new Audio(require("@/assets/add-sound.mp3"));
-var trashSound = new Audio(require("@/assets/trash-sound.mp3"));
+var addSound = new Audio(require("@/assets/End_note.ogg"));
+addSound.volume = 0.25;
+var trashSound = new Audio(require("@/assets/KeypressStandard.ogg"));
+trashSound.volume = 0.5;
 export default {
   name: "App",
   components: {
