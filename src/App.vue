@@ -1,8 +1,8 @@
 <template>
   <b-container fluid="sm">
-    <h2 class="text-center my-3">Your TODO list</h2>
+    <h3 class="text-center my-2">Your TODO list</h3>
     <add @new-Item="addItem" />
-    <b-row class="p-3">
+    <b-row class="p-2 ml-3">
       <b-form-group>
         <b-form-radio-group
           class="text-info"
@@ -18,13 +18,26 @@
       v-if="todos.length"
     />
     <p v-else>No todos</p>
+
+    <footer class="navbar footer fixed-bottom">
+      <b-button
+        href="https://money.yandex.ru/to/410013014746086"
+        variant="outline-info"
+      >
+        <b-icon icon="hand-thumbs-up"></b-icon>Donate
+      </b-button>
+      <b-alert show fade dismissible
+        >All tasks stored in your browser's local storage</b-alert
+      >
+    </footer>
   </b-container>
 </template>
 
 <script>
 import todolist from "@/components/todolist.vue";
 import add from "@/components/add.vue";
-
+var addSound = new Audio(require("@/assets/add-sound.mp3"));
+var trashSound = new Audio(require("@/assets/trash-sound.mp3"));
 export default {
   name: "App",
   components: {
@@ -64,11 +77,18 @@ export default {
     addItem(Item) {
       this.todos.push(Item);
       localStorage.setItem("toDoList", JSON.stringify(this.todos));
+      addSound.play();
     },
     removeTodoItem(id) {
       this.todos = this.todos.filter(t => t.id !== id);
       localStorage.setItem("toDoList", JSON.stringify(this.todos));
+      trashSound.play();
     }
   }
 };
 </script>
+<style>
+body {
+  background: linear-gradient(to right, #ddf6ff, #80cef8);
+}
+</style>

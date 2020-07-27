@@ -11,17 +11,14 @@
         cols="8 pl-3"
         v-bind:class="{ done: todo.completed }"
         v-on:click="todo.completed = !todo.completed"
+        >{{ todo.title }}</b-col
       >
-        {{ todo.title }}
-      </b-col>
       <b-col col="1" class="text-center">
         <b-button
           variant="outline-danger"
           v-on:click="$emit('removeTodoItem', todo.id)"
         >
-          <p class="mb-0">
-            <b-icon icon="trash"></b-icon>
-          </p>
+          <b-icon icon="trash"></b-icon>
         </b-button>
       </b-col>
     </b-row>
