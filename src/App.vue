@@ -4,11 +4,7 @@
     <add @new-Item="addItem" />
     <b-row class="p-2 ml-3">
       <b-form-group>
-        <b-form-radio-group
-          class="text-info"
-          v-model="filter"
-          :options="options"
-        ></b-form-radio-group>
+        <b-form-radio-group class="text-info" v-model="filter" :options="options"></b-form-radio-group>
       </b-form-group>
     </b-row>
     <hr />
@@ -27,7 +23,7 @@
           variant="outline-info"
           target="_blank"
         >
-          <b-icon icon="hand-thumbs-up"></b-icon> Donate
+          <b-icon icon="hand-thumbs-up"></b-icon>Donate
         </b-button>
       </b-alert>
     </footer>
