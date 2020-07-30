@@ -18,17 +18,18 @@
       v-if="displayTasks.length"
     />
     <b-alert v-else show fade variant="info">No items in this category</b-alert>
+
     <footer class="navbar footer fixed-bottom">
-      <b-button
-        href="https://money.yandex.ru/to/410013014746086"
-        variant="outline-info"
-        target="_blank"
-      >
-        <b-icon icon="hand-thumbs-up"></b-icon>Donate
-      </b-button>
-      <b-alert show fade dismissible
-        >All tasks stored in your browser's local storage</b-alert
-      >
+      <b-alert show fade dismissible class="mx-auto">
+        All tasks stored in your browser's local storage ...
+        <b-button
+          href="https://money.yandex.ru/to/410013014746086"
+          variant="outline-info"
+          target="_blank"
+        >
+          <b-icon icon="hand-thumbs-up"></b-icon> Donate
+        </b-button>
+      </b-alert>
     </footer>
   </b-container>
 </template>

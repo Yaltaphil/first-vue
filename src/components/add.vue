@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit">
     <b-input-group prepend="New task">
-      <b-form-input 
+      <b-form-input
         v-model="title"
         placeholder="type here"
         aria-controls="field for task input"
