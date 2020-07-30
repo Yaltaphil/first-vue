@@ -15,10 +15,9 @@
     <todolist
       v-bind:todos="displayTasks"
       v-on:removeTodoItem="removeTodoItem"
-      v-if="todos.length"
+      v-if="displayTasks.length"
     />
-    <p v-else>No todos</p>
-
+    <b-alert v-else show fade variant="info">No items in this category</b-alert>
     <footer class="navbar footer fixed-bottom">
       <b-button
         href="https://money.yandex.ru/to/410013014746086"
@@ -38,7 +37,7 @@
 import todolist from "@/components/todolist.vue";
 import add from "@/components/add.vue";
 var addSound = new Audio(require("@/assets/End_note.ogg"));
-addSound.volume = 0.25;
+addSound.volume = 0.35;
 var trashSound = new Audio(require("@/assets/KeypressStandard.ogg"));
 trashSound.volume = 0.5;
 export default {
