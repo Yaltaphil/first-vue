@@ -8,12 +8,21 @@
         ></b-form-checkbox>
       </b-col>
       <b-col
-        cols="8"
+        cols="9"
         class="pl-3"
         v-bind:class="{ done: todo.completed }"
         v-on:click="$emit('toggleTodoItem', todo.id)"
         >{{ todo.title }}</b-col
       >
+
+      <b-col cols="1" class="text-center">
+        <b-button
+          variant="outline-info"
+          v-on:click="$emit('editTodoItem', todo.id)"
+        >
+          <b-icon icon="pencil"></b-icon>
+        </b-button>
+      </b-col>
       <b-col cols="1" class="text-center">
         <b-button
           variant="outline-danger"

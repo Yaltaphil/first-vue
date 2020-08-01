@@ -41,9 +41,14 @@
       v-bind:todos="displayTasks"
       v-on:removeTodoItem="removeTodoItem"
       v-on:toggleTodoItem="toggleTodoItem"
+      v-on:editTodoItem="editTodoItem"
       v-if="displayTasks.length"
     />
     <b-alert v-else show fade variant="info">No items in this category</b-alert>
+
+    <b-modal id="edit-modal" title="Edit task">
+      <b-form-input v-model="taskForEdit.title"></b-form-input>
+    </b-modal>
 
     <footer class="navbar footer fixed-bottom">
       <b-alert show fade dismissible class="mx-auto">
@@ -96,6 +101,7 @@ export default {
       settings: {
         soundOn: true
       },
+      taskForEdit: "",
       options: [
         { text: "All", value: "All" },
         { text: "Completed", value: "Completed" },
@@ -129,6 +135,10 @@ export default {
       let toggleElem = this.todos.find(t => t.id === id);
       toggleElem.completed = !toggleElem.completed;
       this.settings.soundOn && toggleSound.play();
+    },
+    editTodoItem(id) {
+      this.taskForEdit = this.todos.find(t => t.id === id);
+      this.$bvModal.show("edit-modal");
     }
   }
 };

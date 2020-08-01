@@ -6,6 +6,7 @@
       :key="todo.id"
       v-on:removeTodoItem="removeTodoItem"
       v-on:toggleTodoItem="toggleTodoItem"
+      v-on:editTodoItem="editTodoItem"
     />
   </b-container>
 </template>
@@ -23,6 +24,9 @@ export default {
     },
     toggleTodoItem(id) {
       this.$emit("toggleTodoItem", id);
+    },
+    editTodoItem(id) {
+      this.$emit("editTodoItem", id);
     }
   }
 };
