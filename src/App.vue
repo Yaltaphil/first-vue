@@ -1,19 +1,27 @@
 <template>
   <b-container fluid="sm">
-    <h3 class="text-center my-2">Your TODO list</h3>
-    <b-form-checkbox v-model="soundOn" switch>
-      Sounds:
-      <b>{{ soundOn ? "on" : "off" }}</b>
-    </b-form-checkbox>
+    <b-navbar toggleable variant="info" type="dark">
+      <b-navbar-brand>
+        <h3>Your TODO list</h3>
+      </b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <hr />
+          <b-form-checkbox v-model="soundOn" switch>
+            Sounds:
+            <b>{{ soundOn ? "on" : "off" }}</b>
+          </b-form-checkbox>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
 
     <add @new-Item="addItem" />
     <b-row class="p-2 ml-3">
       <b-form-group>
-        <b-form-radio-group
-          class="text-info"
-          v-model="filter"
-          :options="options"
-        ></b-form-radio-group>
+        <b-form-radio-group class="text-info" v-model="filter" :options="options"></b-form-radio-group>
       </b-form-group>
     </b-row>
     <hr />
