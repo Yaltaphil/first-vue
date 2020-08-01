@@ -16,22 +16,22 @@
 
 <script>
 export default {
-  data () {
-    return { title: '' }
+  data() {
+    return { title: "" };
   },
   methods: {
-    onSubmit () {
+    onSubmit() {
       if (this.title.trim()) {
         const newTodo = {
           id: Date.now(),
           title: this.title,
           completed: false
-        }
-        this.$emit('new-Item', newTodo)
-        this.title = ''
-        this.$refs.todoInput.focus()
+        };
+        this.$emit("new-Item", newTodo);
+        this.title = "";
+        this.$refs.todoInput.focus();
       }
     }
   }
-}
+};
 </script>

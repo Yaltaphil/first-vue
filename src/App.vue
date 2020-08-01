@@ -4,13 +4,11 @@
       <b-navbar-brand>
         <h3>Your TODO list</h3>
       </b-navbar-brand>
-
       <b-navbar-toggle
         v-b-tooltip.hover
         title="Settings"
         target="nav-collapse"
       ></b-navbar-toggle>
-
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="border">
           <label>
@@ -38,9 +36,11 @@
       </b-form-group>
     </b-row>
     <hr />
+
     <todolist
       v-bind:todos="displayTasks"
       v-on:removeTodoItem="removeTodoItem"
+      v-on:toggleTodoItem="toggleTodoItem"
       v-if="displayTasks.length"
     />
     <b-alert v-else show fade variant="info">No items in this category</b-alert>
@@ -65,8 +65,10 @@ import todolist from "@/components/todolist.vue";
 import add from "@/components/add.vue";
 var addSound = new Audio(require("@/assets/End_note.ogg"));
 addSound.volume = 0.35;
-var trashSound = new Audio(require("@/assets/KeypressStandard.ogg"));
+var trashSound = new Audio(require("@/assets/NFCTransferComplete.ogg"));
 trashSound.volume = 0.5;
+var toggleSound = new Audio(require("@/assets/KeypressStandard.ogg"));
+toggleSound.volume = 0.5;
 
 export default {
   name: "App",
@@ -83,6 +85,7 @@ export default {
     }
   },
   updated() {
+    localStorage.setItem("toDoList", JSON.stringify(this.todos));
     localStorage.setItem("todoSettings", JSON.stringify(this.settings));
   },
 
@@ -103,7 +106,7 @@ export default {
   computed: {
     displayTasks() {
       return this.todos.filter(t => {
-        if (!this.filter || this.filter === "All") {
+        if (this.filter === "All") {
           return true;
         } else if (this.filter === "Completed") {
           return t.completed === true;
@@ -116,13 +119,16 @@ export default {
   methods: {
     addItem(Item) {
       this.todos.push(Item);
-      localStorage.setItem("toDoList", JSON.stringify(this.todos));
       this.settings.soundOn && addSound.play();
     },
     removeTodoItem(id) {
       this.todos = this.todos.filter(t => t.id !== id);
-      localStorage.setItem("toDoList", JSON.stringify(this.todos));
       this.settings.soundOn && trashSound.play();
+    },
+    toggleTodoItem(id) {
+      let toggleElem = this.todos.find(t => t.id === id);
+      toggleElem.completed = !toggleElem.completed;
+      this.settings.soundOn && toggleSound.play();
     }
   }
 };

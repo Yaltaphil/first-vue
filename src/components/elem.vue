@@ -1,19 +1,20 @@
 <template>
   <transition name="fade">
     <b-row class="justify-content-md-center p-1">
-      <b-col col="1" class="text-center">
+      <b-col cols="1" class="text-center">
         <b-form-checkbox
           v-model="todo.completed"
-          v-on:click="todo.completed = !todo.completed"
+          v-on:click="$emit('toggleTodoItem', todo.id)"
         ></b-form-checkbox>
       </b-col>
       <b-col
-        cols="8 pl-3"
+        cols="8"
+        class="pl-3"
         v-bind:class="{ done: todo.completed }"
-        v-on:click="todo.completed = !todo.completed"
+        v-on:click="$emit('toggleTodoItem', todo.id)"
         >{{ todo.title }}</b-col
       >
-      <b-col col="1" class="text-center">
+      <b-col cols="1" class="text-center">
         <b-button
           variant="outline-danger"
           v-on:click="$emit('removeTodoItem', todo.id)"
