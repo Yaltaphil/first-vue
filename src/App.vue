@@ -1,10 +1,19 @@
 <template>
   <b-container fluid="sm">
     <h3 class="text-center my-2">Your TODO list</h3>
+    <b-form-checkbox v-model="soundOn" switch>
+      Sounds:
+      <b>{{ soundOn ? "on" : "off" }}</b>
+    </b-form-checkbox>
+
     <add @new-Item="addItem" />
     <b-row class="p-2 ml-3">
       <b-form-group>
-        <b-form-radio-group class="text-info" v-model="filter" :options="options"></b-form-radio-group>
+        <b-form-radio-group
+          class="text-info"
+          v-model="filter"
+          :options="options"
+        ></b-form-radio-group>
       </b-form-group>
     </b-row>
     <hr />
@@ -37,6 +46,7 @@ var addSound = new Audio(require("@/assets/End_note.ogg"));
 addSound.volume = 0.35;
 var trashSound = new Audio(require("@/assets/KeypressStandard.ogg"));
 trashSound.volume = 0.5;
+
 export default {
   name: "App",
   components: {
@@ -48,10 +58,12 @@ export default {
       this.todos = JSON.parse(localStorage.getItem("toDoList"));
     }
   },
+
   data() {
     return {
       todos: [],
       filter: "All",
+      soundOn: true,
       options: [
         { text: "All", value: "All" },
         { text: "Completed", value: "Completed" },
@@ -62,12 +74,12 @@ export default {
   computed: {
     displayTasks() {
       return this.todos.filter(t => {
-        if (!this.filter || this.filter == "All") {
+        if (!this.filter || this.filter === "All") {
           return true;
-        } else if (this.filter == "Completed") {
-          return t.completed == true;
-        } else if (this.filter == "Not completed") {
-          return t.completed == false;
+        } else if (this.filter === "Completed") {
+          return t.completed === true;
+        } else if (this.filter === "Not completed") {
+          return t.completed === false;
         }
       });
     }
@@ -76,12 +88,12 @@ export default {
     addItem(Item) {
       this.todos.push(Item);
       localStorage.setItem("toDoList", JSON.stringify(this.todos));
-      addSound.play();
+      this.soundOn && addSound.play();
     },
     removeTodoItem(id) {
       this.todos = this.todos.filter(t => t.id !== id);
       localStorage.setItem("toDoList", JSON.stringify(this.todos));
-      trashSound.play();
+      this.soundOn && trashSound.play();
     }
   }
 };
