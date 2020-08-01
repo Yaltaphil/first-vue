@@ -1,19 +1,28 @@
 <template>
   <b-container fluid="sm">
-    <b-navbar toggleable variant="info" type="dark">
+    <b-navbar toggleable type="light" variant="outline-info">
       <b-navbar-brand>
         <h3>Your TODO list</h3>
       </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-navbar-toggle
+        v-b-tooltip.hover
+        title="Settings"
+        target="nav-collapse"
+      ></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <hr />
-          <b-form-checkbox v-model="soundOn" switch>
-            Sounds:
-            <b>{{ soundOn ? "on" : "off" }}</b>
-          </b-form-checkbox>
+        <b-navbar-nav class="border">
+          <label>
+            <b-form-checkbox
+              v-model="settings.soundOn"
+              switch
+              class="py-3 mx-3"
+            >
+              Sounds:
+              <b>{{ settings.soundOn ? "on" : "off" }}</b>
+            </b-form-checkbox>
+          </label>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -21,7 +30,11 @@
     <add @new-Item="addItem" />
     <b-row class="p-2 ml-3">
       <b-form-group>
-        <b-form-radio-group class="text-info" v-model="filter" :options="options"></b-form-radio-group>
+        <b-form-radio-group
+          class="text-info"
+          v-model="filter"
+          :options="options"
+        ></b-form-radio-group>
       </b-form-group>
     </b-row>
     <hr />
@@ -65,13 +78,21 @@ export default {
     if (localStorage.getItem("toDoList")) {
       this.todos = JSON.parse(localStorage.getItem("toDoList"));
     }
+    if (localStorage.getItem("todoSettings")) {
+      this.settings = JSON.parse(localStorage.getItem("todoSettings"));
+    }
+  },
+  updated() {
+    localStorage.setItem("todoSettings", JSON.stringify(this.settings));
   },
 
   data() {
     return {
       todos: [],
       filter: "All",
-      soundOn: true,
+      settings: {
+        soundOn: true
+      },
       options: [
         { text: "All", value: "All" },
         { text: "Completed", value: "Completed" },
@@ -96,12 +117,12 @@ export default {
     addItem(Item) {
       this.todos.push(Item);
       localStorage.setItem("toDoList", JSON.stringify(this.todos));
-      this.soundOn && addSound.play();
+      this.settings.soundOn && addSound.play();
     },
     removeTodoItem(id) {
       this.todos = this.todos.filter(t => t.id !== id);
       localStorage.setItem("toDoList", JSON.stringify(this.todos));
-      this.soundOn && trashSound.play();
+      this.settings.soundOn && trashSound.play();
     }
   }
 };
