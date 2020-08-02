@@ -46,8 +46,18 @@
     />
     <b-alert v-else show fade variant="info">No items in this category</b-alert>
 
-    <b-modal id="edit-modal" title="Edit task">
-      <b-form-input v-model="taskForEdit.title"></b-form-input>
+    <b-modal
+      id="edit-modal"
+      title="Edit task"
+      ok-only
+      centered
+      header-bg-variant="success"
+    >
+      <b-form-input
+        v-model.lazy="taskForEdit.title"
+        ref="modalInput"
+        autofocus
+      ></b-form-input>
     </b-modal>
 
     <footer class="navbar footer fixed-bottom">
@@ -73,7 +83,7 @@ addSound.volume = 0.35;
 var trashSound = new Audio(require("@/assets/NFCTransferComplete.ogg"));
 trashSound.volume = 0.5;
 var toggleSound = new Audio(require("@/assets/KeypressStandard.ogg"));
-toggleSound.volume = 0.5;
+toggleSound.volume = 0.7;
 
 export default {
   name: "App",
