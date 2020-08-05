@@ -4,7 +4,7 @@
       <b-col cols="1" class="text-center">
         <b-form-checkbox
           v-model="todo.completed"
-          v-on:click="$emit('toggleTodoItem', todo.id)"
+          v-on:change="$emit('toggleTodoItem', todo.id)"
         ></b-form-checkbox>
       </b-col>
       <b-col

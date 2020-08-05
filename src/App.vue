@@ -50,12 +50,12 @@
       id="edit-modal"
       title="Edit task"
       ok-only
-      centered
+      no-fade
       header-bg-variant="success"
     >
       <b-form-input
         v-model.lazy="taskForEdit.title"
-        ref="modalInput"
+        v-on:keydown.enter="closeModal"
         autofocus
       ></b-form-input>
     </b-modal>
@@ -149,6 +149,9 @@ export default {
     editTodoItem(id) {
       this.taskForEdit = this.todos.find(t => t.id === id);
       this.$bvModal.show("edit-modal");
+    },
+    closeModal(){
+      this.$bvModal.hide("edit-modal");
     }
   }
 };
