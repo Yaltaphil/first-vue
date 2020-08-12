@@ -1,6 +1,6 @@
 <template>
   <b-container fluid="sm">
-    <b-navbar toggleable type="light" variant="outline-info">
+    <b-navbar toggleable="sm" type="light" variant="outline-info">
       <b-navbar-brand>
         <h3>Your TODO list</h3>
       </b-navbar-brand>
@@ -26,6 +26,7 @@
     </b-navbar>
 
     <add @new-Item="addItem" />
+
     <b-row class="p-2 ml-3">
       <b-form-group>
         <b-form-radio-group
@@ -39,12 +40,14 @@
 
     <todolist
       v-bind:todos="displayTasks"
+      v-if="displayTasks.length"
+      v-on:editTodoItem="editTodoItem"
       v-on:removeTodoItem="removeTodoItem"
       v-on:toggleTodoItem="toggleTodoItem"
-      v-on:editTodoItem="editTodoItem"
-      v-if="displayTasks.length"
     />
-    <b-alert v-else show fade variant="info">No items in this category</b-alert>
+    <b-alert v-else show="true" fade variant="info"
+      >No items in category</b-alert
+    >
 
     <b-modal
       id="edit-modal"
@@ -61,7 +64,7 @@
     </b-modal>
 
     <footer class="navbar footer fixed-bottom">
-      <b-alert show fade dismissible class="mx-auto">
+      <b-alert class="mx-auto" fade show="10">
         All tasks stored in your browser's local storage ...
         <b-button
           href="https://money.yandex.ru/to/410013014746086"
@@ -78,11 +81,12 @@
 <script>
 import todolist from "@/components/todolist.vue";
 import add from "@/components/add.vue";
-var addSound = new Audio(require("@/assets/End_note.ogg"));
+
+const addSound = new Audio(require("@/assets/End_note.ogg"));
 addSound.volume = 0.35;
-var trashSound = new Audio(require("@/assets/NFCTransferComplete.ogg"));
+const trashSound = new Audio(require("@/assets/NFCTransferComplete.ogg"));
 trashSound.volume = 0.5;
-var toggleSound = new Audio(require("@/assets/KeypressStandard.ogg"));
+const toggleSound = new Audio(require("@/assets/KeypressStandard.ogg"));
 toggleSound.volume = 0.7;
 
 export default {
@@ -150,7 +154,8 @@ export default {
       this.taskForEdit = this.todos.find(t => t.id === id);
       this.$bvModal.show("edit-modal");
     },
-    closeModal(){
+    closeModal() {
+      this.settings.soundOn && addSound.play();
       this.$bvModal.hide("edit-modal");
     }
   }
