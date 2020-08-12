@@ -45,7 +45,7 @@
       v-on:removeTodoItem="removeTodoItem"
       v-on:toggleTodoItem="toggleTodoItem"
     />
-    <b-alert v-else show="true" fade variant="info"
+    <b-alert fade show="true" v-else variant="info"
       >No items in category</b-alert
     >
 
@@ -56,6 +56,8 @@
       no-fade
       header-bg-variant="success"
     >
+      <!--      TODO: sound on change-->
+
       <b-form-input
         v-model.lazy="taskForEdit.title"
         v-on:keydown.enter="closeModal"
