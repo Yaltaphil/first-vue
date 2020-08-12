@@ -1,6 +1,6 @@
 <template>
   <b-container fluid="sm">
-    <b-navbar toggleable="sm" type="light" variant="outline-info">
+    <b-navbar toggleable="true" type="light" variant="outline-info">
       <b-navbar-brand>
         <h3>Your TODO list</h3>
       </b-navbar-brand>
@@ -59,14 +59,14 @@
       <!--      TODO: sound on change-->
 
       <b-form-input
-        v-model.lazy="taskForEdit.title"
+        v-model.lazy="taskToEdit.title"
         v-on:keydown.enter="closeModal"
         autofocus
       ></b-form-input>
     </b-modal>
 
     <footer class="navbar footer fixed-bottom">
-      <b-alert class="mx-auto" fade show="10">
+      <b-alert class="mx-auto" fade show="20">
         All tasks stored in your browser's local storage ...
         <b-button
           href="https://money.yandex.ru/to/410013014746086"
@@ -117,7 +117,7 @@ export default {
       settings: {
         soundOn: true
       },
-      taskForEdit: "",
+      taskToEdit: "",
       options: [
         { text: "All", value: "All" },
         { text: "Completed", value: "Completed" },
@@ -153,7 +153,7 @@ export default {
       this.settings.soundOn && toggleSound.play();
     },
     editTodoItem(id) {
-      this.taskForEdit = this.todos.find(t => t.id === id);
+      this.taskToEdit = this.todos.find(t => t.id === id);
       this.$bvModal.show("edit-modal");
     },
     closeModal() {
