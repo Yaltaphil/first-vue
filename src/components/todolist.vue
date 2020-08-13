@@ -4,9 +4,9 @@
       v-for="todo in todos"
       v-bind:todo="todo"
       :key="todo.id"
-      v-on:removeTodoItem="removeTodoItem"
-      v-on:toggleTodoItem="toggleTodoItem"
-      v-on:editTodoItem="editTodoItem"
+      v-on:remove-todo-item="removeTodoItem"
+      v-on:toggle-todo-item="toggleTodoItem"
+      v-on:edit-todo-item="editTodoItem"
     />
   </b-container>
 </template>
@@ -20,13 +20,13 @@ export default {
   },
   methods: {
     removeTodoItem(id) {
-      this.$emit("removeTodoItem", id);
+      this.$emit("remove-todo-item", id);
     },
     toggleTodoItem(id) {
-      this.$emit("toggleTodoItem", id);
+      this.$emit("toggle-todo-item", id);
     },
     editTodoItem(id) {
-      this.$emit("editTodoItem", id);
+      this.$emit("edit-todo-item", id);
     }
   }
 };

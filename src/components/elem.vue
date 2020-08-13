@@ -4,21 +4,21 @@
       <b-col cols="1" class="text-center">
         <b-form-checkbox
           v-model="todo.completed"
-          v-on:change="$emit('toggleTodoItem', todo.id)"
+          v-on:change="$emit('toggle-todo-item', todo.id)"
         ></b-form-checkbox>
       </b-col>
       <b-col
         cols="9"
         class="pl-3"
         v-bind:class="{ done: todo.completed }"
-        v-on:click="$emit('toggleTodoItem', todo.id)"
+        v-on:click="$emit('toggle-todo-item', todo.id)"
         >{{ todo.title }}</b-col
       >
 
       <b-col cols="1" class="text-center">
         <b-button
           variant="outline-info"
-          v-on:click="$emit('editTodoItem', todo.id)"
+          v-on:click="$emit('edit-todo-item', todo.id)"
         >
           <b-icon icon="pencil"></b-icon>
         </b-button>
@@ -26,7 +26,7 @@
       <b-col cols="1" class="text-center">
         <b-button
           variant="outline-danger"
-          v-on:click="$emit('removeTodoItem', todo.id)"
+          v-on:click="$emit('remove-todo-item', todo.id)"
         >
           <b-icon icon="trash"></b-icon>
         </b-button>
@@ -54,7 +54,8 @@ export default {
 .fade-leave-active {
   transition: opacity 1s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

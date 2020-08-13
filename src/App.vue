@@ -25,7 +25,7 @@
       </b-collapse>
     </b-navbar>
 
-    <add @new-Item="addItem" />
+    <add v-on:new-item="addItem" />
 
     <b-row class="p-2 ml-3">
       <b-form-group>
@@ -41,9 +41,9 @@
     <todolist
       v-bind:todos="displayTasks"
       v-if="displayTasks.length"
-      v-on:editTodoItem="editTodoItem"
-      v-on:removeTodoItem="removeTodoItem"
-      v-on:toggleTodoItem="toggleTodoItem"
+      v-on:edit-todo-item="editTodoItem"
+      v-on:remove-todo-item="removeTodoItem"
+      v-on:toggle-todo-item="toggleTodoItem"
     />
     <b-alert fade show="true" v-else variant="info"
       >No items in category</b-alert
@@ -53,11 +53,8 @@
       id="edit-modal"
       title="Edit task"
       ok-only
-      no-fade
       header-bg-variant="success"
     >
-      <!--      TODO: sound on change-->
-
       <b-form-input
         v-model.lazy="taskToEdit.title"
         v-on:keydown.enter="closeModal"
@@ -139,8 +136,8 @@ export default {
     }
   },
   methods: {
-    addItem(Item) {
-      this.todos.push(Item);
+    addItem(newItem) {
+      this.todos.push(newItem);
       this.settings.soundOn && addSound.play();
     },
     removeTodoItem(id) {

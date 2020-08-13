@@ -5,7 +5,6 @@
         v-model.lazy="title"
         placeholder="type here"
         aria-controls="field for task input"
-        ref="todoInput"
         autofocus
       ></b-form-input>
       <b-button type="submit" variant="success">
@@ -28,7 +27,7 @@ export default {
           title: this.title,
           completed: false
         };
-        this.$emit("new-Item", newTodo);
+        this.$emit("new-item", newTodo);
         this.title = "";
       }
     }
