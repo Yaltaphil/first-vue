@@ -40,14 +40,12 @@
 
     <todolist
       v-bind:todos="displayTasks"
-      v-if="displayTasks.length"
       v-on:edit-todo-item="editTodoItem"
       v-on:remove-todo-item="removeTodoItem"
       v-on:toggle-todo-item="toggleTodoItem"
+      v-if="displayTasks.length"
     />
-    <b-alert fade show="true" v-else variant="info"
-      >No items in category</b-alert
-    >
+    <b-alert v-else fade show variant="light">No items in category</b-alert>
 
     <b-modal
       id="edit-modal"
